@@ -1,4 +1,4 @@
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { AmplifySignOut } from '@aws-amplify/ui-react'
 
 import classes from './App.module.scss'
 
@@ -12,4 +12,4 @@ const App = () => {
   )
 }
 
-export default withAuthenticator(App)
+export default App
