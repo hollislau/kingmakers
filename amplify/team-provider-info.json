@@ -1,0 +1,20 @@
+{
+  "develop": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kingmakers-develop-82425-authRole",
+      "UnauthRoleArn": "arn:aws:iam::197221238317:role/amplify-kingmakers-develop-82425-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::197221238317:role/amplify-kingmakers-develop-82425-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-kingmakers-develop-82425-deployment",
+      "UnauthRoleName": "amplify-kingmakers-develop-82425-unauthRole",
+      "StackName": "amplify-kingmakers-develop-82425",
+      "StackId": "arn:aws:cloudformation:us-west-2:197221238317:stack/amplify-kingmakers-develop-82425/998b0c70-468a-11eb-9c5e-06b6cdf5c503",
+      "AmplifyAppId": "d35dx47fl6kppn"
+    },
+    "categories": {
+      "auth": {
+        "kingmakers01cde695": {}
+      }
+    }
+  }
+}
