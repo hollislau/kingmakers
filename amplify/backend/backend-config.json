@@ -1,6 +1,6 @@
 {
   "auth": {
-    "kingmakers01cde695": {
+    "kingmakers": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

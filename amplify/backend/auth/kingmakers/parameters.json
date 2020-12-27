@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "kingmakers01cde695_identitypool_01cde695",
+    "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "kingma01cde695",
-    "userPoolName": "kingmakers01cde695_userpool_01cde695",
+    "resourceNameTruncated": "kingma613be8f0",
+    "userPoolName": "kingmakers",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -12,13 +12,20 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your Kingmakers confirmation code",
+    "emailVerificationMessage": "Password confirmation code: {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Numbers",
+        "Requires Symbols",
+        "Requires Uppercase"
+    ],
     "requiredAttributes": [
-        "email"
+        "email",
+        "given_name",
+        "family_name"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,10 +35,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "kingma01cde695_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "kingma613be8f0_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "01cde695",
-    "resourceName": "kingmakers01cde695",
+    "sharedId": "613be8f0",
+    "resourceName": "kingmakers",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,14 +52,16 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
-    "triggers": "{}",
-    "userPoolGroupList": [],
     "serviceName": "Cognito",
+    "usernameAttributes": [
+        "email"
+    ],
+    "useDefault": "manual",
+    "userPoolGroups": false,
+    "userPoolGroupList": [],
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "authProviders": [],
     "usernameCaseSensitive": false,
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": [],
     "dependsOn": []
 }
