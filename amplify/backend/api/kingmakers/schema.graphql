@@ -1,0 +1,350 @@
+type Dominion
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: owner, operations: [read, create, update, delete] }
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  userId: ID!
+  turns: [Turn]!
+  notes: String
+}
+
+type Alignment
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  label: String!
+  locationType: LocationType!
+  alignmentType: AlignmentType!
+  attributeName: AttributeName!
+  modifier: Int!
+  sortOrder: Int!
+}
+
+type Terrain
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  label: String!
+  terrainType: TerrainType!
+  isMain: Boolean!
+  sortOrder: Int!
+}
+
+type Improvement
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  type: ImprovementType!
+  label: String!
+  description: String!
+  prerequisites: ImprovementPrerequisites!
+  cost: ImprovementCost!
+  effects: ImprovementEffects!
+  upgradeableTo: ImprovementType
+  sortOrder: Int!
+}
+
+type CostByTerrain
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  type: TerrainType!
+  label: String!
+  farmCost: Int
+  roadCost: Int!
+  sortOrder: Int!
+}
+
+type Turn {
+  upkeep: Upkeep!
+  construction: Construction!
+  attributes: Attributes!
+}
+
+type Upkeep {
+  ruler: Character!
+  ethic: AlignmentMod!
+  morality: AlignmentMod!
+  stabilityRoll: Int!
+  unrestReductionRoll: Int
+  revenueRoll: Int!
+  revenueModifier: Int
+}
+
+type Construction {
+  leaders: [Character]!
+  hexes: [Hex!]!
+}
+
+type Hex {
+  id: ID!
+  settlement: Settlement
+  mainTerrain: MainTerrainType!
+  otherTerrain: [TerrainType]!
+  improvements: [ImprovementType]!
+  adjacentHexes: [ID!]!
+}
+
+type Settlement {
+  id: ID!
+  name: String!
+  ethic: AlignmentMod!
+  morality: AlignmentMod!
+}
+
+type Attributes {
+  stability: Int!
+  loyalty: Int!
+  economy: Int!
+  unrest: Int!
+  size: Int!
+  treasury: Int!
+  revenue: Int!
+  consumption: Int!
+  corruption: Int!
+  crime: Int!
+  law: Int!
+  lore: Int!
+  productivity: Int!
+  society: Int!
+  defense: Int!
+}
+
+type Character {
+  firstName: String!
+  lastName: String
+  strength: Int!
+  dexterity: Int!
+  constitution: Int!
+  intelligence: Int!
+  wisdom: Int!
+  charisma: Int!
+}
+
+type AlignmentMod {
+  label: String!
+  attributeName: AttributeName!
+  modifier: Int!
+}
+
+type ImprovementPrerequisites {
+  settlementRequired: Boolean!
+  minDominionSize: Int
+  terrain: [TerrainType]!
+  improvements: [ImprovementType]!
+  surroundingTerrain: [TerrainType]!
+  surroundingImprovements: [ImprovementType]!
+  excludedByTerrain: [TerrainType]!
+  excludedByImprovements: [ImprovementType]!
+}
+
+type ImprovementCost {
+  type: ImprovementCostType!
+  value: Int
+}
+
+type ImprovementEffects {
+  modifiers: [ImprovementModifier]!
+  countsAsBuildings: [BuildingType]!
+  countsAsTerrain: [TerrainType]!
+  unitHousing: UnitSize
+}
+
+type ImprovementModifier {
+  attributeName: AttributeName!
+  modifier: Int!
+  dominionTerrainScaling: DominionTerrainScaling
+  hexTerrainRequirements: [TerrainType]!
+  hexImprovementRequirements: [ImprovementType]!
+  taxationRequired: Boolean!
+}
+
+type DominionTerrainScaling {
+  type: TerrainType!
+  forEvery: Int!
+}
+
+enum AttributeName {
+  STABILITY
+  LOYALTY
+  ECONOMY
+  UNREST
+  SIZE
+  TREASURY
+  REVENUE
+  CONSUMPTION
+  CORRUPTION
+  CRIME
+  LAW
+  LORE
+  PRODUCTIVITY
+  SOCIETY
+  DEFENSE
+}
+
+enum LocationType {
+  DOMINION
+  SETTLEMENT
+}
+
+enum AlignmentType {
+  ETHIC
+  MORALITY
+}
+
+enum MainTerrainType {
+  DESERT
+  FOREST
+  HILL
+  MARSH
+  MOUNTAIN
+  PLAIN
+}
+
+enum TerrainType {
+  DESERT
+  FOREST
+  HILL
+  MARSH
+  MOUNTAIN
+  PLAIN
+  COASTLINE
+  RIVER
+  LAKE
+}
+
+enum ImprovementType {
+  AQUEDUCT
+  CANAL
+  FARM
+  FISHERY
+  FORT
+  HIGHWAY
+  MINE
+  PAVED_STREET
+  QUARRY
+  ROAD
+  SAWMILL
+  WATCHTOWER
+}
+
+enum ImprovementCostType {
+  STATIC
+  PER_LOT_BUILDING
+  ROAD_MULTIPLIER
+  FARM
+}
+
+enum BuildingType {
+  ACADEMY
+  ALCHEMIST_LAB
+  ARENA
+  BANK
+  BARDIC_COLLEGE
+  BARRACKS
+  BLACK_MARKET
+  BREWERY
+  BUREAU
+  CASTERS_TOWER
+  CASTLE
+  CATHEDRAL
+  CISTERN
+  CITY_WALL
+  DUMP
+  EXOTIC_ARTISAN
+  FOREIGN_QUARTER
+  FOUNDRY
+  GARRISON
+  GRANARY
+  GRAVEYARD
+  GUILDHALL
+  HERBALIST
+  HOSPITAL
+  HOUSE
+  INN
+  JAIL
+  LIBRARY
+  LUXURY_STORE
+  MAGICAL_ACADEMY
+  MANSION
+  MARKET
+  MILL
+  MOAT
+  MONASTERY
+  MONUMENT
+  MUSEUM
+  NOBLE_VILLA
+  OBSERVATORY
+  PALACE
+  PIER
+  SHOP
+  SHRINE
+  SMITHY
+  STABLE
+  STOCKYARD
+  TANNERY
+  TAVERN
+  TEMPLE
+  TENEMENT
+  THEATER
+  TOWN_HALL
+  TRADE_SHOP
+  UNIVERSITY
+  WATCHTOWER
+  WATERFRONT
+  WATERGATE
+  WATERWAY
+}
+
+enum UnitSize {
+  D4
+  D6
+  D8
+  D10
+  D12
+}
