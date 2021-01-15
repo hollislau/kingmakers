@@ -35,9 +35,6 @@ export const createDominion = /* GraphQL */ `
         }
       }
       notes
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -78,9 +75,6 @@ export const updateDominion = /* GraphQL */ `
         }
       }
       notes
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -121,73 +115,439 @@ export const deleteDominion = /* GraphQL */ `
         }
       }
       notes
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
     }
   }
 `;
-export const createAlignment = /* GraphQL */ `
-  mutation CreateAlignment(
-    $input: CreateAlignmentInput!
-    $condition: ModelAlignmentConditionInput
+export const createDominionEthic = /* GraphQL */ `
+  mutation CreateDominionEthic(
+    $input: CreateDominionEthicInput!
+    $condition: ModelDominionEthicConditionInput
   ) {
-    createAlignment(input: $input, condition: $condition) {
+    createDominionEthic(input: $input, condition: $condition) {
       id
+      version
       label
-      locationType
-      alignmentType
-      attributeName
+      attribute
       modifier
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
   }
 `;
-export const updateAlignment = /* GraphQL */ `
-  mutation UpdateAlignment(
-    $input: UpdateAlignmentInput!
-    $condition: ModelAlignmentConditionInput
+export const updateDominionEthic = /* GraphQL */ `
+  mutation UpdateDominionEthic(
+    $input: UpdateDominionEthicInput!
+    $condition: ModelDominionEthicConditionInput
   ) {
-    updateAlignment(input: $input, condition: $condition) {
+    updateDominionEthic(input: $input, condition: $condition) {
       id
+      version
       label
-      locationType
-      alignmentType
-      attributeName
+      attribute
       modifier
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteAlignment = /* GraphQL */ `
-  mutation DeleteAlignment(
-    $input: DeleteAlignmentInput!
-    $condition: ModelAlignmentConditionInput
+export const deleteDominionEthic = /* GraphQL */ `
+  mutation DeleteDominionEthic(
+    $input: DeleteDominionEthicInput!
+    $condition: ModelDominionEthicConditionInput
   ) {
-    deleteAlignment(input: $input, condition: $condition) {
+    deleteDominionEthic(input: $input, condition: $condition) {
       id
+      version
       label
-      locationType
-      alignmentType
-      attributeName
+      attribute
       modifier
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDominionEthicHistory = /* GraphQL */ `
+  mutation CreateDominionEthicHistory(
+    $input: CreateDominionEthicHistoryInput!
+    $condition: ModelDominionEthicHistoryConditionInput
+  ) {
+    createDominionEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDominionEthicHistory = /* GraphQL */ `
+  mutation UpdateDominionEthicHistory(
+    $input: UpdateDominionEthicHistoryInput!
+    $condition: ModelDominionEthicHistoryConditionInput
+  ) {
+    updateDominionEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDominionEthicHistory = /* GraphQL */ `
+  mutation DeleteDominionEthicHistory(
+    $input: DeleteDominionEthicHistoryInput!
+    $condition: ModelDominionEthicHistoryConditionInput
+  ) {
+    deleteDominionEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDominionMorality = /* GraphQL */ `
+  mutation CreateDominionMorality(
+    $input: CreateDominionMoralityInput!
+    $condition: ModelDominionMoralityConditionInput
+  ) {
+    createDominionMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDominionMorality = /* GraphQL */ `
+  mutation UpdateDominionMorality(
+    $input: UpdateDominionMoralityInput!
+    $condition: ModelDominionMoralityConditionInput
+  ) {
+    updateDominionMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDominionMorality = /* GraphQL */ `
+  mutation DeleteDominionMorality(
+    $input: DeleteDominionMoralityInput!
+    $condition: ModelDominionMoralityConditionInput
+  ) {
+    deleteDominionMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDominionMoralityHistory = /* GraphQL */ `
+  mutation CreateDominionMoralityHistory(
+    $input: CreateDominionMoralityHistoryInput!
+    $condition: ModelDominionMoralityHistoryConditionInput
+  ) {
+    createDominionMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDominionMoralityHistory = /* GraphQL */ `
+  mutation UpdateDominionMoralityHistory(
+    $input: UpdateDominionMoralityHistoryInput!
+    $condition: ModelDominionMoralityHistoryConditionInput
+  ) {
+    updateDominionMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDominionMoralityHistory = /* GraphQL */ `
+  mutation DeleteDominionMoralityHistory(
+    $input: DeleteDominionMoralityHistoryInput!
+    $condition: ModelDominionMoralityHistoryConditionInput
+  ) {
+    deleteDominionMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSettlementEthic = /* GraphQL */ `
+  mutation CreateSettlementEthic(
+    $input: CreateSettlementEthicInput!
+    $condition: ModelSettlementEthicConditionInput
+  ) {
+    createSettlementEthic(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSettlementEthic = /* GraphQL */ `
+  mutation UpdateSettlementEthic(
+    $input: UpdateSettlementEthicInput!
+    $condition: ModelSettlementEthicConditionInput
+  ) {
+    updateSettlementEthic(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSettlementEthic = /* GraphQL */ `
+  mutation DeleteSettlementEthic(
+    $input: DeleteSettlementEthicInput!
+    $condition: ModelSettlementEthicConditionInput
+  ) {
+    deleteSettlementEthic(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSettlementEthicHistory = /* GraphQL */ `
+  mutation CreateSettlementEthicHistory(
+    $input: CreateSettlementEthicHistoryInput!
+    $condition: ModelSettlementEthicHistoryConditionInput
+  ) {
+    createSettlementEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSettlementEthicHistory = /* GraphQL */ `
+  mutation UpdateSettlementEthicHistory(
+    $input: UpdateSettlementEthicHistoryInput!
+    $condition: ModelSettlementEthicHistoryConditionInput
+  ) {
+    updateSettlementEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSettlementEthicHistory = /* GraphQL */ `
+  mutation DeleteSettlementEthicHistory(
+    $input: DeleteSettlementEthicHistoryInput!
+    $condition: ModelSettlementEthicHistoryConditionInput
+  ) {
+    deleteSettlementEthicHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSettlementMorality = /* GraphQL */ `
+  mutation CreateSettlementMorality(
+    $input: CreateSettlementMoralityInput!
+    $condition: ModelSettlementMoralityConditionInput
+  ) {
+    createSettlementMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSettlementMorality = /* GraphQL */ `
+  mutation UpdateSettlementMorality(
+    $input: UpdateSettlementMoralityInput!
+    $condition: ModelSettlementMoralityConditionInput
+  ) {
+    updateSettlementMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSettlementMorality = /* GraphQL */ `
+  mutation DeleteSettlementMorality(
+    $input: DeleteSettlementMoralityInput!
+    $condition: ModelSettlementMoralityConditionInput
+  ) {
+    deleteSettlementMorality(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSettlementMoralityHistory = /* GraphQL */ `
+  mutation CreateSettlementMoralityHistory(
+    $input: CreateSettlementMoralityHistoryInput!
+    $condition: ModelSettlementMoralityHistoryConditionInput
+  ) {
+    createSettlementMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSettlementMoralityHistory = /* GraphQL */ `
+  mutation UpdateSettlementMoralityHistory(
+    $input: UpdateSettlementMoralityHistoryInput!
+    $condition: ModelSettlementMoralityHistoryConditionInput
+  ) {
+    updateSettlementMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSettlementMoralityHistory = /* GraphQL */ `
+  mutation DeleteSettlementMoralityHistory(
+    $input: DeleteSettlementMoralityHistoryInput!
+    $condition: ModelSettlementMoralityHistoryConditionInput
+  ) {
+    deleteSettlementMoralityHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      attribute
+      modifier
+      sortOrder
+      type
       createdAt
       updatedAt
     }
@@ -200,13 +560,11 @@ export const createTerrain = /* GraphQL */ `
   ) {
     createTerrain(input: $input, condition: $condition) {
       id
+      version
       label
-      terrainType
       isMain
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -219,13 +577,11 @@ export const updateTerrain = /* GraphQL */ `
   ) {
     updateTerrain(input: $input, condition: $condition) {
       id
+      version
       label
-      terrainType
       isMain
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -238,13 +594,62 @@ export const deleteTerrain = /* GraphQL */ `
   ) {
     deleteTerrain(input: $input, condition: $condition) {
       id
+      version
       label
-      terrainType
       isMain
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createTerrainHistory = /* GraphQL */ `
+  mutation CreateTerrainHistory(
+    $input: CreateTerrainHistoryInput!
+    $condition: ModelTerrainHistoryConditionInput
+  ) {
+    createTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      isMain
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTerrainHistory = /* GraphQL */ `
+  mutation UpdateTerrainHistory(
+    $input: UpdateTerrainHistoryInput!
+    $condition: ModelTerrainHistoryConditionInput
+  ) {
+    updateTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      isMain
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTerrainHistory = /* GraphQL */ `
+  mutation DeleteTerrainHistory(
+    $input: DeleteTerrainHistoryInput!
+    $condition: ModelTerrainHistoryConditionInput
+  ) {
+    deleteTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      isMain
+      sortOrder
+      type
       createdAt
       updatedAt
     }
@@ -257,11 +662,10 @@ export const createImprovement = /* GraphQL */ `
   ) {
     createImprovement(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       description
       prerequisites {
-        settlementRequired
         minDominionSize
         terrain
         improvements
@@ -276,7 +680,7 @@ export const createImprovement = /* GraphQL */ `
       }
       effects {
         modifiers {
-          attributeName
+          attribute
           modifier
           hexTerrainRequirements
           hexImprovementRequirements
@@ -288,9 +692,7 @@ export const createImprovement = /* GraphQL */ `
       }
       upgradeableTo
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -303,11 +705,10 @@ export const updateImprovement = /* GraphQL */ `
   ) {
     updateImprovement(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       description
       prerequisites {
-        settlementRequired
         minDominionSize
         terrain
         improvements
@@ -322,7 +723,7 @@ export const updateImprovement = /* GraphQL */ `
       }
       effects {
         modifiers {
-          attributeName
+          attribute
           modifier
           hexTerrainRequirements
           hexImprovementRequirements
@@ -334,9 +735,7 @@ export const updateImprovement = /* GraphQL */ `
       }
       upgradeableTo
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -349,11 +748,10 @@ export const deleteImprovement = /* GraphQL */ `
   ) {
     deleteImprovement(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       description
       prerequisites {
-        settlementRequired
         minDominionSize
         terrain
         improvements
@@ -368,7 +766,7 @@ export const deleteImprovement = /* GraphQL */ `
       }
       effects {
         modifiers {
-          attributeName
+          attribute
           modifier
           hexTerrainRequirements
           hexImprovementRequirements
@@ -380,9 +778,136 @@ export const deleteImprovement = /* GraphQL */ `
       }
       upgradeableTo
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createImprovementHistory = /* GraphQL */ `
+  mutation CreateImprovementHistory(
+    $input: CreateImprovementHistoryInput!
+    $condition: ModelImprovementHistoryConditionInput
+  ) {
+    createImprovementHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      description
+      prerequisites {
+        minDominionSize
+        terrain
+        improvements
+        surroundingTerrain
+        surroundingImprovements
+        excludedByTerrain
+        excludedByImprovements
+      }
+      cost {
+        type
+        value
+      }
+      effects {
+        modifiers {
+          attribute
+          modifier
+          hexTerrainRequirements
+          hexImprovementRequirements
+          taxationRequired
+        }
+        countsAsBuildings
+        countsAsTerrain
+        unitHousing
+      }
+      upgradeableTo
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateImprovementHistory = /* GraphQL */ `
+  mutation UpdateImprovementHistory(
+    $input: UpdateImprovementHistoryInput!
+    $condition: ModelImprovementHistoryConditionInput
+  ) {
+    updateImprovementHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      description
+      prerequisites {
+        minDominionSize
+        terrain
+        improvements
+        surroundingTerrain
+        surroundingImprovements
+        excludedByTerrain
+        excludedByImprovements
+      }
+      cost {
+        type
+        value
+      }
+      effects {
+        modifiers {
+          attribute
+          modifier
+          hexTerrainRequirements
+          hexImprovementRequirements
+          taxationRequired
+        }
+        countsAsBuildings
+        countsAsTerrain
+        unitHousing
+      }
+      upgradeableTo
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteImprovementHistory = /* GraphQL */ `
+  mutation DeleteImprovementHistory(
+    $input: DeleteImprovementHistoryInput!
+    $condition: ModelImprovementHistoryConditionInput
+  ) {
+    deleteImprovementHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      description
+      prerequisites {
+        minDominionSize
+        terrain
+        improvements
+        surroundingTerrain
+        surroundingImprovements
+        excludedByTerrain
+        excludedByImprovements
+      }
+      cost {
+        type
+        value
+      }
+      effects {
+        modifiers {
+          attribute
+          modifier
+          hexTerrainRequirements
+          hexImprovementRequirements
+          taxationRequired
+        }
+        countsAsBuildings
+        countsAsTerrain
+        unitHousing
+      }
+      upgradeableTo
+      sortOrder
+      type
       createdAt
       updatedAt
     }
@@ -395,14 +920,12 @@ export const createCostByTerrain = /* GraphQL */ `
   ) {
     createCostByTerrain(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       farmCost
       roadCost
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -415,14 +938,12 @@ export const updateCostByTerrain = /* GraphQL */ `
   ) {
     updateCostByTerrain(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       farmCost
       roadCost
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
       createdAt
       updatedAt
     }
@@ -435,14 +956,66 @@ export const deleteCostByTerrain = /* GraphQL */ `
   ) {
     deleteCostByTerrain(input: $input, condition: $condition) {
       id
-      type
+      version
       label
       farmCost
       roadCost
       sortOrder
-      _version
-      _deleted
-      _lastChangedAt
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCostByTerrainHistory = /* GraphQL */ `
+  mutation CreateCostByTerrainHistory(
+    $input: CreateCostByTerrainHistoryInput!
+    $condition: ModelCostByTerrainHistoryConditionInput
+  ) {
+    createCostByTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      farmCost
+      roadCost
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCostByTerrainHistory = /* GraphQL */ `
+  mutation UpdateCostByTerrainHistory(
+    $input: UpdateCostByTerrainHistoryInput!
+    $condition: ModelCostByTerrainHistoryConditionInput
+  ) {
+    updateCostByTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      farmCost
+      roadCost
+      sortOrder
+      type
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCostByTerrainHistory = /* GraphQL */ `
+  mutation DeleteCostByTerrainHistory(
+    $input: DeleteCostByTerrainHistoryInput!
+    $condition: ModelCostByTerrainHistoryConditionInput
+  ) {
+    deleteCostByTerrainHistory(input: $input, condition: $condition) {
+      id
+      version
+      label
+      farmCost
+      roadCost
+      sortOrder
+      type
       createdAt
       updatedAt
     }

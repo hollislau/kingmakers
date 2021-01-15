@@ -17,7 +17,7 @@ type Dominion
   notes: String
 }
 
-type Alignment
+type DominionEthic
   @model(subscriptions: null)
   @auth(
     rules: [
@@ -28,14 +28,185 @@ type Alignment
       }
       { allow: groups, groups: ["Users"], operations: [read] }
     ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedDominionEthics"
   ) {
-  id: ID!
+  id: Ethic!
+  version: Int!
   label: String!
-  locationType: LocationType!
-  alignmentType: AlignmentType!
-  attributeName: AttributeName!
+  attribute: Attribute!
   modifier: Int!
   sortOrder: Int!
+  type: SortType!
+}
+
+type DominionEthicHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: Ethic!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type DominionMorality
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedDominionMoralities"
+  ) {
+  id: Morality!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type DominionMoralityHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: Morality!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type SettlementEthic
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedSettlementEthics"
+  ) {
+  id: Ethic!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type SettlementEthicHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: Ethic!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type SettlementMorality
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedSettlementMoralities"
+  ) {
+  id: Morality!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
+}
+
+type SettlementMoralityHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: Morality!
+  version: Int!
+  label: String!
+  attribute: Attribute!
+  modifier: Int!
+  sortOrder: Int!
+  type: SortType!
 }
 
 type Terrain
@@ -49,12 +220,39 @@ type Terrain
       }
       { allow: groups, groups: ["Users"], operations: [read] }
     ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedTerrain"
   ) {
-  id: ID!
+  id: TerrainType!
+  version: Int!
   label: String!
-  terrainType: TerrainType!
   isMain: Boolean!
   sortOrder: Int!
+  type: SortType!
+}
+
+type TerrainHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: TerrainType!
+  version: Int!
+  label: String!
+  isMain: Boolean!
+  sortOrder: Int!
+  type: SortType!
 }
 
 type Improvement
@@ -68,9 +266,14 @@ type Improvement
       }
       { allow: groups, groups: ["Users"], operations: [read] }
     ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedImprovements"
   ) {
-  id: ID!
-  type: ImprovementType!
+  id: ImprovementType!
+  version: Int!
   label: String!
   description: String!
   prerequisites: ImprovementPrerequisites!
@@ -78,6 +281,32 @@ type Improvement
   effects: ImprovementEffects!
   upgradeableTo: ImprovementType
   sortOrder: Int!
+  type: SortType!
+}
+
+type ImprovementHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: ImprovementType!
+  version: Int!
+  label: String!
+  description: String!
+  prerequisites: ImprovementPrerequisites!
+  cost: ImprovementCost!
+  effects: ImprovementEffects!
+  upgradeableTo: ImprovementType
+  sortOrder: Int!
+  type: SortType!
 }
 
 type CostByTerrain
@@ -91,68 +320,56 @@ type CostByTerrain
       }
       { allow: groups, groups: ["Users"], operations: [read] }
     ]
+  )
+  @key(
+    name: "BySortOrder"
+    fields: ["type", "sortOrder"]
+    queryField: "sortedCostsByTerrain"
   ) {
-  id: ID!
-  type: TerrainType!
+  id: TerrainType!
+  version: Int!
   label: String!
   farmCost: Int
   roadCost: Int!
   sortOrder: Int!
+  type: SortType!
+}
+
+type CostByTerrainHistory
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrators"]
+        operations: [read, create, update, delete]
+      }
+      { allow: groups, groups: ["Users"], operations: [read] }
+    ]
+  )
+  @key(fields: ["id", "version"]) {
+  id: TerrainType!
+  version: Int!
+  label: String!
+  farmCost: Int
+  roadCost: Int!
+  sortOrder: Int!
+  type: SortType!
 }
 
 type Turn {
+  preTurn: PreTurn!
   upkeep: Upkeep!
   construction: Construction!
   attributes: Attributes!
 }
 
-type Upkeep {
+type PreTurn {
   ruler: Character!
-  ethic: AlignmentMod!
-  morality: AlignmentMod!
-  stabilityRoll: Int!
-  unrestReductionRoll: Int
-  revenueRoll: Int!
-  revenueModifier: Int
-}
-
-type Construction {
-  leaders: [Character]!
-  hexes: [Hex!]!
-}
-
-type Hex {
-  id: ID!
-  settlement: Settlement
-  mainTerrain: MainTerrainType!
-  otherTerrain: [TerrainType]!
-  improvements: [ImprovementType]!
-  adjacentHexes: [ID!]!
-}
-
-type Settlement {
-  id: ID!
-  name: String!
-  ethic: AlignmentMod!
-  morality: AlignmentMod!
-}
-
-type Attributes {
-  stability: Int!
-  loyalty: Int!
-  economy: Int!
-  unrest: Int!
-  size: Int!
-  treasury: Int!
-  revenue: Int!
-  consumption: Int!
-  corruption: Int!
-  crime: Int!
-  law: Int!
-  lore: Int!
-  productivity: Int!
-  society: Int!
-  defense: Int!
+  activeLeaders: [Character]!
+  inactiveLeaders: [Character]!
+  ethic: EthicData!
+  morality: MoralityData!
 }
 
 type Character {
@@ -166,14 +383,49 @@ type Character {
   charisma: Int!
 }
 
-type AlignmentMod {
-  label: String!
-  attributeName: AttributeName!
-  modifier: Int!
+type EthicData {
+  value: Ethic!
+  version: Int!
+}
+
+type MoralityData {
+  value: Morality!
+  version: Int!
+}
+
+type Upkeep {
+  stabilityRoll: Int!
+  unrestReductionRoll: Int
+  revenueRoll: Int!
+  revenueModifier: Int
+}
+
+type Construction {
+  hexes: [[Hex!]!]!
+}
+
+type Hex {
+  id: String!
+  mainTerrain: MainTerrainType!
+  otherTerrain: [TerrainType]!
+  improvements: [ImprovementData]!
+  settlement: Settlement
+}
+
+type Settlement {
+  name: String!
+  ethic: EthicData!
+  morality: MoralityData!
+}
+
+type ImprovementData {
+  type: ImprovementType!
+  version: Int!
+  costByTerrainVersion: Int
+  rpInvested: Int!
 }
 
 type ImprovementPrerequisites {
-  settlementRequired: Boolean!
   minDominionSize: Int
   terrain: [TerrainType]!
   improvements: [ImprovementType]!
@@ -196,7 +448,7 @@ type ImprovementEffects {
 }
 
 type ImprovementModifier {
-  attributeName: AttributeName!
+  attribute: Attribute!
   modifier: Int!
   dominionTerrainScaling: DominionTerrainScaling
   hexTerrainRequirements: [TerrainType]!
@@ -209,32 +461,34 @@ type DominionTerrainScaling {
   forEvery: Int!
 }
 
-enum AttributeName {
-  STABILITY
-  LOYALTY
-  ECONOMY
-  UNREST
-  SIZE
-  TREASURY
-  REVENUE
-  CONSUMPTION
-  CORRUPTION
-  CRIME
-  LAW
-  LORE
-  PRODUCTIVITY
-  SOCIETY
-  DEFENSE
+type Attributes {
+  stability: Int!
+  loyalty: Int!
+  economy: Int!
+  unrest: Int!
+  size: Int!
+  treasury: Int!
+  revenue: Int!
+  consumption: Int!
+  corruption: Int!
+  crime: Int!
+  law: Int!
+  lore: Int!
+  productivity: Int!
+  society: Int!
+  defense: Int!
 }
 
-enum LocationType {
-  DOMINION
-  SETTLEMENT
+enum Ethic {
+  LAWFUL
+  NEUTRAL
+  CHAOTIC
 }
 
-enum AlignmentType {
-  ETHIC
-  MORALITY
+enum Morality {
+  GOOD
+  NEUTRAL
+  EVIL
 }
 
 enum MainTerrainType {
@@ -275,7 +529,6 @@ enum ImprovementType {
 
 enum ImprovementCostType {
   STATIC
-  PER_LOT_BUILDING
   ROAD_MULTIPLIER
   FARM
 }
@@ -347,4 +600,29 @@ enum UnitSize {
   D8
   D10
   D12
+}
+
+enum Attribute {
+  STABILITY
+  LOYALTY
+  ECONOMY
+  UNREST
+  SIZE
+  TREASURY
+  REVENUE
+  CONSUMPTION
+  CORRUPTION
+  CRIME
+  LAW
+  LORE
+  PRODUCTIVITY
+  SOCIETY
+  DEFENSE
+}
+
+enum SortType {
+  ALIGNMENT
+  TERRAIN
+  IMPROVEMENT
+  COST
 }
