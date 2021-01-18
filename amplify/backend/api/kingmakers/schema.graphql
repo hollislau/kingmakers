@@ -375,12 +375,12 @@ type PreTurn {
 type Character {
   firstName: String!
   lastName: String
-  strength: Int!
-  dexterity: Int!
-  constitution: Int!
-  intelligence: Int!
-  wisdom: Int!
-  charisma: Int!
+  strength: Int
+  dexterity: Int
+  constitution: Int
+  intelligence: Int
+  wisdom: Int
+  charisma: Int
 }
 
 type EthicData {
@@ -406,8 +406,8 @@ type Construction {
 
 type Hex {
   id: String!
-  mainTerrain: MainTerrainType!
-  otherTerrain: [TerrainType]!
+  terrain: [TerrainType]!
+  exploration: ExplorationLevel
   improvements: [ImprovementData]!
   settlement: Settlement
 }
@@ -416,6 +416,7 @@ type Settlement {
   name: String!
   ethic: EthicData!
   morality: MoralityData!
+  districtsCleared: Int!
 }
 
 type ImprovementData {
@@ -491,15 +492,6 @@ enum Morality {
   EVIL
 }
 
-enum MainTerrainType {
-  DESERT
-  FOREST
-  HILL
-  MARSH
-  MOUNTAIN
-  PLAIN
-}
-
 enum TerrainType {
   DESERT
   FOREST
@@ -512,6 +504,11 @@ enum TerrainType {
   LAKE
 }
 
+enum ExplorationLevel {
+  BASIC
+  DETAILED
+}
+
 enum ImprovementType {
   AQUEDUCT
   CANAL
@@ -520,7 +517,6 @@ enum ImprovementType {
   FORT
   HIGHWAY
   MINE
-  PAVED_STREET
   QUARRY
   ROAD
   SAWMILL
@@ -573,7 +569,6 @@ enum BuildingType {
   MUSEUM
   NOBLE_VILLA
   OBSERVATORY
-  PALACE
   PIER
   SHOP
   SHRINE
