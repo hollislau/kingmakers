@@ -9,7 +9,7 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components'
 
 import { ReactComponent as Logo } from '../../assets/images/logo.svg'
 
-import classes from './Auth.module.scss'
+import { container, logo } from './Auth.module.scss'
 
 const Auth = ({ children }) => {
   const [authState, setAuthState] = useState()
@@ -23,10 +23,10 @@ const Auth = ({ children }) => {
   }, [])
 
   return authState === AuthState.SignedIn && user ? (
-    <div className={classes.container}>
+    <div className={container}>
       <AmplifyGreetings username={user.attributes?.given_name}>
         <Link slot="logo" to="/">
-          <Logo className={classes.logo} title="Kingmakers logo" />
+          <Logo className={logo} title="Kingmakers logo" />
           Kingmakers
         </Link>
         <span slot="greetings-message">

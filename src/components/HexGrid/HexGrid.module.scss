@@ -45,6 +45,7 @@ $grid-columns: 51;
   position: absolute;
   top: -20px;
   left: -11px;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat($grid-columns, 1fr 2fr) 1fr;
   grid-gap: 1px 2px;
@@ -68,7 +69,10 @@ $grid-columns: 51;
   cursor: pointer;
 
   @include hex-grid($grid-rows, $grid-columns);
-  @include hex-background(none, $gray-500, darken($gray-500, 2.5%));
+
+  .unclaimedHighlighted & {
+    @include hex-background(none, $gray-500, darken($gray-500, 2.5%));
+  }
 
   &.claimed {
     @include hex-background($green);

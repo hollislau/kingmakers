@@ -1,4 +1,16 @@
+@import './styles/variables';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
 .container {
+  overflow: scroll;
+  border: 1px solid $black;
+  height: 400px;
+  width: 500px;
+}
+
+.map {
   position: relative;
   overflow: hidden;
   width: max-content;

@@ -1,12 +1,14 @@
 import HexGrid from '../HexGrid/HexGrid'
-import map from '../../assets/images/norwold.webp'
+import norwold from '../../assets/images/norwold.webp'
 
-import classes from './Map.module.scss'
+import { container, map } from './Map.module.scss'
 
 const Map = ({ hexes }) => (
-  <div className={classes.container}>
-    <img src={map} alt="Map of Norwold" />
-    <HexGrid hexes={hexes} />
+  <div className={container}>
+    <div className={map}>
+      <img src={norwold} alt="Map of Norwold" />
+      <HexGrid hexes={hexes} areUnclaimedHighlighted />
+    </div>
   </div>
 )
 

@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import Map from '../../components/Map/Map'
 import StatGroup from '../../components/StatGroup/StatGroup'
 
-import classes from './Dashboard.module.scss'
+import { container } from './Dashboard.module.scss'
 
 const stats = [
   { label: 'Stability', value: '+0' },
@@ -33,10 +33,8 @@ const hexes = generateHexMatrix(22, 51)
 
 const Dashboard = () => {
   return (
-    <div className={classes.container}>
-      <div className={classes.map}>
-        <Map hexes={hexes} />
-      </div>
+    <div className={container}>
+      <Map hexes={hexes} />
       <Button>Button</Button>
       <StatGroup stats={stats} />
     </div>
