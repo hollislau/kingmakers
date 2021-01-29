@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 import Map from '../../components/Map/Map'
 import StatGroup from '../../components/StatGroup/StatGroup'
 
-import { container } from './Dashboard.module.scss'
+// import { container } from './Dashboard.module.scss'
 
 const stats = [
   { label: 'Stability', value: '+0' },
@@ -33,11 +33,21 @@ const hexes = generateHexMatrix(22, 51)
 
 const Dashboard = () => {
   return (
-    <div className={container}>
-      <Map hexes={hexes} />
-      <Button>Button</Button>
-      <StatGroup stats={stats} />
-    </div>
+    <Container className="py-3" fluid>
+      <Row>
+        <Col md={4}>
+          <h3 className="text-center">Dominion Attributes</h3>
+          <StatGroup stats={stats} />
+        </Col>
+        <Col md={4}>
+          <Map className="mt-2" hexes={hexes} />
+          <Button className="mt-2">Button</Button>
+        </Col>
+        <Col md={4}>
+          <h3 className="text-center">Hex Attributes</h3>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

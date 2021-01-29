@@ -1,5 +1,7 @@
 @import 'variables';
-@import 'base';
 
-// import last to allow overrides of bootstrap defaults
+// import after variables to allow overrides of bootstrap defaults
 @import '~bootstrap/scss/bootstrap';
+
+@import 'base';
+@import 'utilities';

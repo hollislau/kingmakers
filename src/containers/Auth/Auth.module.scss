@@ -3,11 +3,15 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-.container {
+.link {
+  font-size: $font-size-lg;
+  color: $gray-800 !important;
+  text-decoration: none !important;
 }
 
 .logo {
-  fill: $purple;
+  fill: $gray-800;
   width: 49px;
   height: 45px;
+  margin-right: 0.5rem;
 }
