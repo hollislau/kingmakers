@@ -35,16 +35,16 @@ const Dashboard = () => {
   return (
     <Container className="py-3" fluid>
       <Row>
-        <Col md={4}>
-          <h3 className="text-center">Dominion Attributes</h3>
+        <Col className="border border-dark rounded-sm" md={4}>
+          <h3 className="text-center mt-2">Dominion Attributes</h3>
           <StatGroup stats={stats} />
         </Col>
         <Col md={4}>
-          <Map className="mt-2" hexes={hexes} />
+          <Map hexes={hexes} />
           <Button className="mt-2">Button</Button>
         </Col>
-        <Col md={4}>
-          <h3 className="text-center">Hex Attributes</h3>
+        <Col className="border border-dark rounded-sm" md={4}>
+          <h3 className="text-center mt-2">Hex Attributes</h3>
         </Col>
       </Row>
     </Container>
