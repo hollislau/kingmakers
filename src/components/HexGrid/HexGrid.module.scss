@@ -29,6 +29,7 @@ $grid-columns: 51;
   $active-background: darken($background, 10%)
 ) {
   background: $background;
+  cursor: pointer;
 
   &:hover {
     background: $hover-background;
@@ -66,11 +67,10 @@ $grid-columns: 51;
   aspect-ratio: 1000 / 869;
   opacity: 0.75;
   transition: background ease 0.2s;
-  cursor: pointer;
 
   @include hex-grid($grid-rows, $grid-columns);
 
-  .unclaimedHighlighted & {
+  .highlightAll & {
     @include hex-background(none, $gray-500, darken($gray-500, 2.5%));
   }
 

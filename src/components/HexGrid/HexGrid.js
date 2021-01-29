@@ -3,15 +3,15 @@ import classnames from 'classnames'
 import {
   container,
   hex,
-  unclaimedHighlighted,
+  highlightAll,
   claimed,
   stronghold,
 } from './HexGrid.module.scss'
 
-const HexGrid = ({ hexes, areUnclaimedHighlighted }) => (
+const HexGrid = ({ hexes, shouldHighlightAll }) => (
   <ul
     className={classnames(container, {
-      [unclaimedHighlighted]: areUnclaimedHighlighted,
+      [highlightAll]: shouldHighlightAll,
     })}
   >
     {hexes.flat().map(({ id, isClaimed, hasStronghold }) => (
