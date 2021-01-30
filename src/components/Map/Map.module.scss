@@ -4,9 +4,14 @@
 @import '~bootstrap/scss/variables';
 
 .container {
-  overflow: scroll;
+  overflow: hidden;
   border: 1px solid $black;
   height: 400px;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .map {
