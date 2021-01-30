@@ -32,18 +32,25 @@ const generateHexMatrix = (rows, columns) => {
 const hexes = generateHexMatrix(22, 51)
 
 const Dashboard = () => {
+  const [mapDraggable, setMapDraggable] = useState(false)
+
   return (
     <Container className="py-3" fluid>
       <Row>
-        <Col className="border border-dark rounded-sm" md={4}>
+        <Col className="border border-dark rounded-sm" md={3}>
           <h3 className="text-center mt-2">Dominion Attributes</h3>
           <StatGroup stats={stats} />
         </Col>
-        <Col md={4}>
-          <Map hexes={hexes} />
-          <Button className="mt-2">Button</Button>
+        <Col md={6}>
+          <Map hexes={hexes} isDraggable={mapDraggable} areUnclaimedActive />
+          <Button
+            className="mt-2"
+            onClick={() => setMapDraggable((prev) => !prev)}
+          >
+            {mapDraggable ? 'Lock' : 'Unlock'}
+          </Button>
         </Col>
-        <Col className="border border-dark rounded-sm" md={4}>
+        <Col className="border border-dark rounded-sm" md={3}>
           <h3 className="text-center mt-2">Hex Attributes</h3>
         </Col>
       </Row>

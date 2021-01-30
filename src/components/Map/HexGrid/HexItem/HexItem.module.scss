@@ -55,16 +55,16 @@ $grid-columns: 51;
   transition: background ease 0.2s;
 
   @include hex-grid($grid-rows, $grid-columns);
+}
 
-  &.unclaimed {
-    @include hex-background(none, $gray-500, darken($gray-500, 2.5%));
-  }
+.unclaimed {
+  @include hex-background(none, $gray-500, darken($gray-500, 2.5%));
+}
 
-  &.claimed {
-    @include hex-background($green);
-  }
+.claimed {
+  @include hex-background($green);
+}
 
-  &.stronghold {
-    @include hex-background($blue);
-  }
+.stronghold {
+  @include hex-background($blue);
 }

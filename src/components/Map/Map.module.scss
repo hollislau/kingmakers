@@ -7,6 +7,9 @@
   overflow: hidden;
   border: 1px solid $black;
   height: 400px;
+}
+
+.draggable {
   cursor: grab;
 
   &:active {

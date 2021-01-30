@@ -7,9 +7,9 @@ import HexGrid from './HexGrid/HexGrid'
 import useDimensions from '../../hooks/useDimensions'
 import norwold from '../../assets/images/norwold.webp'
 
-import { container, map } from './Map.module.scss'
+import { container, draggable, map } from './Map.module.scss'
 
-const Map = ({ className, ...rest }) => {
+const Map = ({ className, isDraggable, ...rest }) => {
   const containerRef = useRef(null)
   const draggableRef = useRef(null)
   const imageRef = useRef(null)
@@ -17,7 +17,10 @@ const Map = ({ className, ...rest }) => {
   const [imageWidth, imageHeight] = useDimensions(imageRef)
 
   return (
-    <div className={classnames(container, className)} ref={containerRef}>
+    <div
+      className={classnames(container, className, { [draggable]: isDraggable })}
+      ref={containerRef}
+    >
       <Draggable
         defaultPosition={{ x: 0, y: 0 }}
         bounds={{
@@ -26,6 +29,7 @@ const Map = ({ className, ...rest }) => {
           top: Math.ceil(containerHeight - imageHeight),
           bottom: 0,
         }}
+        disabled={!isDraggable}
         nodeRef={draggableRef}
       >
         <div className={map} ref={draggableRef}>
@@ -35,7 +39,7 @@ const Map = ({ className, ...rest }) => {
             draggable="false"
             alt="Map of Norwold"
           />
-          <HexGrid {...rest} />
+          <HexGrid className={isDraggable ? 'd-none' : null} {...rest} />
         </div>
       </Draggable>
     </div>
