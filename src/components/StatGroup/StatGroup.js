@@ -2,8 +2,8 @@ import { CardDeck, Card } from 'react-bootstrap'
 
 // import classes from './StatGroup.module.scss'
 
-const StatGroup = ({ stats }) => (
-  <CardDeck>
+const StatGroup = ({ stats, ...rest }) => (
+  <CardDeck {...rest}>
     {stats.map(({ label, value }) => (
       <Card className="text-center border-primary" key={label}>
         <Card.Body className="font-size-xl p-1">{value}</Card.Body>

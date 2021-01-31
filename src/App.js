@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import Auth from './containers/Auth/Auth'
-import Dashboard from './containers/Dashboard/Dashboard'
+import Auth from './components/Auth/Auth'
+import Dashboard from './components/Dashboard/Dashboard'
 
 const App = () => (
   <BrowserRouter>
@@ -10,6 +10,7 @@ const App = () => (
         <Route path="/" exact>
           <Dashboard />
         </Route>
+
         <Route path="*">
           <Redirect to="/" />
         </Route>

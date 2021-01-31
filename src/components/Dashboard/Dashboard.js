@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+// import { useState } from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
+import classnames from 'classnames'
 
-import Map from '../../components/Map/Map'
-import StatGroup from '../../components/StatGroup/StatGroup'
+import Map from '../Map/Map'
+import StatGroup from '../StatGroup/StatGroup'
 
 // import { container } from './Dashboard.module.scss'
 
@@ -31,25 +32,19 @@ const generateHexMatrix = (rows, columns) => {
 
 const hexes = generateHexMatrix(22, 51)
 
-const Dashboard = () => {
-  const [mapDraggable, setMapDraggable] = useState(false)
-
+const Dashboard = ({ className, ...rest }) => {
   return (
-    <Container className="py-3" fluid>
+    <Container className={classnames('py-3', className)} fluid {...rest}>
       <Row>
         <Col className="border border-dark rounded-sm" md={3}>
           <h3 className="text-center mt-2">Dominion Attributes</h3>
           <StatGroup stats={stats} />
         </Col>
+
         <Col md={6}>
-          <Map hexes={hexes} isDraggable={mapDraggable} areUnclaimedActive />
-          <Button
-            className="mt-2"
-            onClick={() => setMapDraggable((prev) => !prev)}
-          >
-            {mapDraggable ? 'Lock' : 'Unlock'}
-          </Button>
+          <Map hexes={hexes} />
         </Col>
+
         <Col className="border border-dark rounded-sm" md={3}>
           <h3 className="text-center mt-2">Hex Attributes</h3>
         </Col>

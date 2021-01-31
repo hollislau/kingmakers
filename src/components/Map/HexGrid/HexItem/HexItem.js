@@ -9,13 +9,19 @@ import {
 } from './HexItem.module.scss'
 
 const HexItem = memo(
-  ({ hex: { isClaimed, hasStronghold }, areUnclaimedActive }) => (
+  ({
+    hex: { isClaimed, hasStronghold },
+    areUnclaimedActive,
+    className,
+    ...rest
+  }) => (
     <li
-      className={classnames(container, {
+      className={classnames(container, className, {
         [unclaimed]: areUnclaimedActive,
         [claimed]: isClaimed,
         [stronghold]: hasStronghold,
       })}
+      {...rest}
     ></li>
   ),
 )

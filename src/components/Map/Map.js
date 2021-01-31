@@ -1,4 +1,5 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
+import { Button } from 'react-bootstrap'
 import Draggable from 'react-draggable'
 import classnames from 'classnames'
 
@@ -7,9 +8,10 @@ import HexGrid from './HexGrid/HexGrid'
 import useDimensions from '../../hooks/useDimensions'
 import norwold from '../../assets/images/norwold.webp'
 
-import { container, draggable, map } from './Map.module.scss'
+import { mapContainer, draggable, map } from './Map.module.scss'
 
-const Map = ({ className, isDraggable, ...rest }) => {
+const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
+  const [isDraggable, setIsDraggable] = useState(false)
   const containerRef = useRef(null)
   const draggableRef = useRef(null)
   const imageRef = useRef(null)
@@ -17,31 +19,43 @@ const Map = ({ className, isDraggable, ...rest }) => {
   const [imageWidth, imageHeight] = useDimensions(imageRef)
 
   return (
-    <div
-      className={classnames(container, className, { [draggable]: isDraggable })}
-      ref={containerRef}
-    >
-      <Draggable
-        defaultPosition={{ x: 0, y: 0 }}
-        bounds={{
-          left: Math.ceil(containerWidth - imageWidth),
-          right: 0,
-          top: Math.ceil(containerHeight - imageHeight),
-          bottom: 0,
-        }}
-        disabled={!isDraggable}
-        nodeRef={draggableRef}
+    <div {...rest}>
+      <div
+        className={classnames(mapContainer, {
+          [draggable]: isDraggable,
+        })}
+        ref={containerRef}
       >
-        <div className={map} ref={draggableRef}>
-          <img
-            src={norwold}
-            ref={imageRef}
-            draggable="false"
-            alt="Map of Norwold"
-          />
-          <HexGrid className={isDraggable ? 'd-none' : null} {...rest} />
-        </div>
-      </Draggable>
+        <Draggable
+          defaultPosition={{ x: 0, y: 0 }}
+          bounds={{
+            left: Math.ceil(containerWidth - imageWidth),
+            right: 0,
+            top: Math.ceil(containerHeight - imageHeight),
+            bottom: 0,
+          }}
+          disabled={!isDraggable}
+          nodeRef={draggableRef}
+        >
+          <div className={map} ref={draggableRef}>
+            <img
+              src={norwold}
+              ref={imageRef}
+              draggable="false"
+              alt="Map of Norwold"
+            />
+            <HexGrid
+              className={isDraggable ? 'd-none' : null}
+              hexes={hexes}
+              areUnclaimedActive={areUnclaimedActive}
+            />
+          </div>
+        </Draggable>
+      </div>
+
+      <Button className="mt-2" onClick={() => setIsDraggable((prev) => !prev)}>
+        {isDraggable ? 'Lock' : 'Unlock'}
+      </Button>
     </div>
   )
 }
