@@ -11,6 +11,7 @@ import norwold from '../../assets/images/norwold.webp'
 import { mapContainer, draggable, map } from './Map.module.scss'
 
 const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
+  const [coords, setCoords] = useState({ x: 0, y: 0 })
   const [isDraggable, setIsDraggable] = useState(false)
   const containerRef = useRef(null)
   const draggableRef = useRef(null)
@@ -27,7 +28,7 @@ const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
         ref={containerRef}
       >
         <Draggable
-          defaultPosition={{ x: 0, y: 0 }}
+          position={coords}
           bounds={{
             left: Math.ceil(containerWidth - imageWidth),
             right: 0,
@@ -36,6 +37,7 @@ const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
           }}
           disabled={!isDraggable}
           nodeRef={draggableRef}
+          onStop={(e, { x, y }) => setCoords({ x, y })}
         >
           <div className={map} ref={draggableRef}>
             <img
@@ -45,7 +47,7 @@ const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
               alt="Map of Norwold"
             />
             <HexGrid
-              className={isDraggable ? 'd-none' : null}
+              className={classnames({ 'd-none': isDraggable })}
               hexes={hexes}
               areUnclaimedActive={areUnclaimedActive}
             />

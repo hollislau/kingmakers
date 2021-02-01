@@ -24,15 +24,17 @@ const Auth = ({ children }) => {
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      <AmplifyGreetings username={user.attributes?.given_name}>
-        <Link className={link} slot="logo" to="/">
-          <Logo className={logo} title="Kingmakers logo" />
-          Kingmakers
-        </Link>
-        <span slot="greetings-message">
-          Greetings, {user.attributes?.given_name}
-        </span>
-      </AmplifyGreetings>
+      <header>
+        <AmplifyGreetings username={user.attributes?.given_name}>
+          <Link className={link} slot="logo" to="/">
+            <Logo className={logo} title="Kingmakers logo" />
+            Kingmakers
+          </Link>
+          <span slot="greetings-message">
+            Greetings, {user.attributes?.given_name}
+          </span>
+        </AmplifyGreetings>
+      </header>
 
       <main>{children}</main>
     </>
