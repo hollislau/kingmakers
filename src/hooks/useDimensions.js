@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 
+import usePrevious from '../hooks/usePrevious'
+
 import { debounce } from '../global/utilities'
 
-const useDimensions = (ref) => {
-  const [width, setWidth] = useState(0)
-  const [height, setHeight] = useState(0)
+const useDimensions = (ref, initialWidth = 0, initialHeight = 0) => {
+  const [width, setWidth] = useState(initialWidth)
+  const [height, setHeight] = useState(initialHeight)
+  const prevWidth = usePrevious(width, initialWidth)
+  const prevHeight = usePrevious(height, initialHeight)
 
   useEffect(() => {
     const roCb = (entries) => {
@@ -22,7 +26,7 @@ const useDimensions = (ref) => {
     return () => ro.unobserve(node)
   }, [ref])
 
-  return [width, height]
+  return [width, height, prevWidth, prevHeight]
 }
 
 export default useDimensions

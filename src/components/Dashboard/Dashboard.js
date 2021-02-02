@@ -30,6 +30,7 @@ const generateHexMatrix = (rows, columns) => {
   return matrix
 }
 
+// TODO: pass function to useState to initialize matrix to avoid recreating or use useMemo
 const hexes = generateHexMatrix(22, 51)
 
 const Dashboard = ({ className, ...rest }) => {

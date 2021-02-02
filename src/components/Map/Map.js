@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import Draggable from 'react-draggable'
 import classnames from 'classnames'
@@ -11,13 +11,70 @@ import norwold from '../../assets/images/norwold.webp'
 import { mapContainer, draggable, map } from './Map.module.scss'
 
 const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 })
+  const [coords, setCoords] = useState({ x: -950, y: 0 })
+  const [bounds, setBounds] = useState({ left: 0, right: 0, top: 0, bottom: 0 })
   const [isDraggable, setIsDraggable] = useState(false)
+
   const containerRef = useRef(null)
   const draggableRef = useRef(null)
   const imageRef = useRef(null)
-  const [containerWidth, containerHeight] = useDimensions(containerRef)
+  const initialized = useRef(false)
+
+  const [
+    containerWidth,
+    containerHeight,
+    prevContainerWidth,
+    prevContainerHeight,
+  ] = useDimensions(containerRef)
   const [imageWidth, imageHeight] = useDimensions(imageRef)
+
+  useEffect(() => {
+    if (imageWidth > 0 && imageHeight > 0) {
+      const leftBound = Math.ceil(containerWidth - imageWidth)
+      const topBound = Math.ceil(containerHeight - imageHeight)
+
+      if (!initialized.current) {
+        initialized.current = true
+
+        setCoords(({ x, y }) => ({
+          x: Math.max(
+            Math.min(x - Math.round((790 - containerWidth) / 2), 0),
+            leftBound,
+          ),
+          y: Math.max(
+            Math.min(y - Math.round((400 - containerHeight) / 2), 0),
+            topBound,
+          ),
+        }))
+      } else {
+        setCoords(({ x, y }) => ({
+          x: Math.max(
+            Math.min(
+              x - Math.round((prevContainerWidth - containerWidth) / 2),
+              0,
+            ),
+            leftBound,
+          ),
+          y: Math.max(
+            Math.min(
+              y - Math.round((prevContainerHeight - containerHeight) / 2),
+              0,
+            ),
+            topBound,
+          ),
+        }))
+      }
+
+      setBounds((prev) => ({ ...prev, left: leftBound, top: topBound }))
+    }
+  }, [
+    containerWidth,
+    containerHeight,
+    prevContainerWidth,
+    prevContainerHeight,
+    imageWidth,
+    imageHeight,
+  ])
 
   return (
     <div {...rest}>
@@ -29,12 +86,7 @@ const Map = ({ hexes, areUnclaimedActive, ...rest }) => {
       >
         <Draggable
           position={coords}
-          bounds={{
-            left: Math.ceil(containerWidth - imageWidth),
-            right: 0,
-            top: Math.ceil(containerHeight - imageHeight),
-            bottom: 0,
-          }}
+          bounds={bounds}
           disabled={!isDraggable}
           nodeRef={draggableRef}
           onStop={(e, { x, y }) => setCoords({ x, y })}
